@@ -616,14 +616,45 @@
       appState.questions = [];
       
       // Section 1: Raven (20 Items) - Diperluas Opsi A sampai F untuk smartphone
-      for (let i = 1; i <= 20; i++) {
-        appState.questions.push({
-          id: `sec1_q${i}`, sectionIdx: 0, type: "mcq",
-          prompt: `Soal Matriks Raven Gambar Nomor ${i}. Perhatikan susunan pola visual stimulus berikut lalu tentukan potongan gambar jawaban melengkapi yang paling tepat:`, image: "",
-          correctAnswer: "A",
-          options: [{ text: "A" }, { text: "B" }, { text: "C" }, { text: "D" }, { text: "E" }, { text: "F" }]
-        });
-      }
+      // 1. BAGIAN DAFTAR DATA (Ini yang Anda tulis berurutan ke bawah 1-20)
+const ravenData = {
+  1: { image: "http://googleusercontent.com/profile/picture/1aSimT6RkX1fJHOSy_ws41TuP0DXpV3BI", ans: "D" },
+  2: { image: "http://googleusercontent.com/profile/picture/14VZsZMLQeMn56zTuz8wYx71vpe90sOev", ans: "G" },
+  3: { image: "http://googleusercontent.com/profile/picture/1EXtXHOdsQyB7fXYogAQdiB-gXODuRKX2", ans: "A" },
+  4: { image: "http://googleusercontent.com/profile/picture/1FWWeJPFPo4FaZ5Ufj0ovdrBJgMkIWZSn", ans: "B" },
+  5: { image: "http://googleusercontent.com/profile/picture/18PSlfuklFyCJFLF9mdeChqaka5EXXEJq", ans: "H" },
+  6:: { image: "http://googleusercontent.com/profile/picture/11XmFcMAa3isSKeZDrPtgSY7xSqeo44dn", ans: "B" },
+  7:: { image: "http://googleusercontent.com/profile/picture/1uDItj6rhaCAReZGkLepfn4IVv-iHOHv8", ans: "A" },
+  8: { image: "http://googleusercontent.com/profile/picture/1BzQBPHy0Xxnj3IXprH22U6yIoKsR-FlG", ans: "H" },
+  9: { image: "http://googleusercontent.com/profile/picture/17enRzD-LJ_TIBcgXbDlLh79kb6YerNgM", ans: "G" },
+  10: { image: "http://googleusercontent.com/profile/picture/11i_GR5_FyE-1HskAndgB-Fg5cKD_ygRk", ans: "E" },
+  11: { image: "http://googleusercontent.com/profile/picture/1Sp604Ez4-mZcjpuacDfsWn_EVXNevOcx", ans: "A" },
+  12: { image: "http://googleusercontent.com/profile/picture/1AReDRFUmhHKBeASRVxnOQ5Iaz223788g", ans: "D" },
+  13: { image: "http://googleusercontent.com/profile/picture/1ehAQ2kN9VYgpH5noTD9sIPdb1wG02XeV", ans: "E" },
+  14: { image: "http://googleusercontent.com/profile/picture/1I8sUGeL9y_3zzSlU1cLQW4A-DYKmmTsc", ans: "G" },
+  15: { image: "http://googleusercontent.com/profile/picture/1sGt4yk8RLohE9VQe9pYa9RlAKzc6yd2u", ans: "G" },
+  16: { image: "http://googleusercontent.com/profile/picture/1Z35xRfFZggK_0zHDhLImynCEfxx4DXWf", ans: "C" },
+  17: { image: "http://googleusercontent.com/profile/picture/1GcJjiBQDLICyPd2MBrX2EZibhQd6tYWt", ans: "F" },
+  18: { image: "http://googleusercontent.com/profile/picture/1CsYWwrXXx9q6AAXAsJOjbCHPHYiKpv22", ans: "H" },
+  19: { image: "http://googleusercontent.com/profile/picture/1w6Psm3jqvUCkIQaW0ExHJdGNsEtbo_Ye", ans: "F" },
+  20: { image: "http://googleusercontent.com/profile/picture/1kESlyw0vDYvqG9xzP_FxOyz-TUooSpfl", ans: "B" }
+};
+
+// 2. BAGIAN PERULANGAN (Ini TETAP menggunakan [i] agar berjalan otomatis)
+for (let i = 1; i <= 20; i++) {
+  // Tetap gunakan [i] di sini, jangan diganti angka manual!
+  const currentData = ravenData[i] || { image: "https://lh3.googleusercontent.com/d/1aSimT6RkX1fJHOSy_ws41TuP0DXpV3BI", ans: "A" };
+
+  appState.questions.push({
+    id: `sec1_q${i}`, 
+    sectionIdx: 0, 
+    type: "mcq",
+    prompt: `Soal Matriks Raven Gambar Nomor ${i}. Perhatikan susunan pola visual stimulus berikut lalu tentukan potongan gambar jawaban melengkapi yang paling tepat:`, 
+    image: currentData.image,         
+    correctAnswer: currentData.ans,  
+    options: [{ text: "A" }, { text: "B" }, { text: "C" }, { text: "D" }, { text: "E" }, { text: "F" }, { text: "G" }, { text: "H" }]
+  });
+}
       
       // Section 2: DASS-21 (21 Items)
       DASS_ITEMS.forEach((item, idx) => {
